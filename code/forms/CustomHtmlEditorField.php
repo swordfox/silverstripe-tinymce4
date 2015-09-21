@@ -32,8 +32,6 @@ class CustomHtmlEditorField extends TextareaField {
 	 * Includes the JavaScript neccesary for this field to work using the {@link Requirements} system.
 	 */
 	public static function include_js() {
-		require_once TINYMCE4_PATH . '/thirdparty/tinymce/tiny_mce_gzip.php';
-
 		$configObj = CustomHtmlEditorConfig::get_active();
 
 		$internalPlugins = array();
