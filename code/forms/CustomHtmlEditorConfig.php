@@ -110,7 +110,7 @@ class CustomHtmlEditorConfig {
         "visualblocks" => null,
         "visualchars" => null,
         "code" => null,
-        "fullscreen" => null,
+        //"fullscreen" => null,
         // "insertdatetime" => null,
         "media" => null,
         "nonbreaking" => null,
