@@ -32,25 +32,14 @@ class CustomHtmlEditorField extends TextareaField {
 	 * Includes the JavaScript neccesary for this field to work using the {@link Requirements} system.
 	 */
 	public static function include_js() {
-		require_once TINYMCE4_PATH . '/thirdparty/tinymce/tiny_mce_gzip.php';
-
 		$configObj = CustomHtmlEditorConfig::get_active();
-
-		if(Config::inst()->get('CustomHtmlEditorField', 'use_gzip')) {
-			$internalPlugins = array();
-			foreach($configObj->getPlugins() as $plugin => $path) if(!$path) $internalPlugins[] = $plugin;
-			$tag = TinyMCE_Compressor::renderTag(array(
-				'url' => TINYMCE4_DIR . '/thirdparty/tinymce/tiny_mce_gzip.php',
-				'plugins' => implode(',', $internalPlugins),
-				'themes' => 'modern',
-				'languages' => $configObj->getOption('language')
-			), true);
-			preg_match('/src="([^"]*)"/', $tag, $matches);
-			Requirements::javascript(html_entity_decode($matches[1]));
-
-		} else {
-			Requirements::javascript(TINYMCE4_DIR . '/thirdparty/tinymce/tinymce.jquery.min.js');
-		} 
+		
+		// compile list of plugins
+		$internalPlugins = array();
+		foreach($configObj->getPlugins() as $plugin => $path) if(!$path) $internalPlugins[] = $plugin;
+		
+		// use cachefly tinymce 4 version
+		Requirements::javascript('//tinymce.cachefly.net/4/tinymce.min.js?plugins='.implode(',', $internalPlugins).'&themes=modern&languages=en&diskcache=true&src=false');
 
 		Requirements::customScript($configObj->generateJS(), 'htmlEditorConfig');
 
