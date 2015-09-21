@@ -37,12 +37,12 @@ CustomHtmlEditorConfig::get('cms')->setOptions(array(
 
 CustomHtmlEditorConfig::get('cms')->disablePlugins('contextmenu');
 
-CustomHtmlEditorConfig::get('cms')->enablePlugins('media', 'fullscreen', 'colorpicker', 'importcss');
+CustomHtmlEditorConfig::get('cms')->enablePlugins('media', 'colorpicker', 'importcss');
 CustomHtmlEditorConfig::get('cms')->enablePlugins(array(
 	'ssbuttons' => '/' . TINYMCE4_DIR . '/thirdparty/tinymce_ssbuttons/editor_plugin_src.js'
 ));
 
-CustomHtmlEditorConfig::get('cms')->addButtonsToLine(1, 'unlink', 'anchor', '|', 'code', 'fullscreen', '|');
+CustomHtmlEditorConfig::get('cms')->addButtonsToLine(1, 'unlink', 'anchor', '|', 'code');
 CustomHtmlEditorConfig::get('cms')->insertButtonsBefore('undo', 'menubtn', '|');
 CustomHtmlEditorConfig::get('cms')->insertButtonsBefore('bold', 'formatselect', '|');
 
